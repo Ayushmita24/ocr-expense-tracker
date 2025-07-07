@@ -19,10 +19,15 @@ A sleek, full-stack web application that allows users to track expenses by uploa
 - **OCR:** Tesseract via `pytesseract`
 - **Database:** SQLite (via SQLAlchemy ORM)
 - **Visualization:** Chart.js (or Plotly)
-
-## 🖥️ Screenshots
-
-> Add screenshots or a screen recording here (like the one you shared)
-
+  
 ## 📂 Project Structure
-
+ocr_expense_tracker/
+├── static/
+│ └── style.css
+├── templates/
+│ ├── index.html
+│ ├── login.html
+│ ├── features.html
+│ └── ...
+├── app.py
+└── README.md
