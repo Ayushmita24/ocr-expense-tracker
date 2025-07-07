@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar .logo {
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #006400;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a, .dropdown-btn {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 10;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .auth-buttons a {
+      margin-left: 15px;
+      text-decoration: none;
+      padding: 8px 15px;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .auth-buttons a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <img src="{{ url_for('static', filename='ocr_expense_tracker.png') }}" alt="Logo" class="logo">
+
+    <div class="nav-links">
+      <a href="#" onclick="scrollToFooter()">About Us</a>
+      <a href="#features">Features</a>
+      <div class="dropdown">
+        <span class="dropdown-btn">Expenses ▾</span>
+        <div class="dropdown-content">
+          <a href="{{ url_for('index', category='groceries') }}">Groceries</a>
+          <a href="{{ url_for('index', category='transport') }}">Transport</a>
+          <a href="{{ url_for('index', category='bills') }}">Bills</a>
+          <a href="{{ url_for('index') }}">All Expenses</a>
+          <a href="{{ url_for('features') }}">Features</a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-buttons">
+      <a href="{{ url_for('login') }}">Login / Register</a>
+    </div>
+  </nav>
+
+  <!-- Replace with actual content -->
+  <div style="height: 2000px;"></div>
+
+  <!-- Footer section -->
+  <footer id="footer" style="background: #f2f2f2; padding: 30px; text-align: center;">
+    <h3>About Us</h3>
+    <p>This expense tracker helps you manage your money smartly using OCR-based receipts.</p>
+  </footer>
+
+  <script>
+    function scrollToFooter() {
+      document.getElementById("footer").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>

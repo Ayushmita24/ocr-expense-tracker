@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted Expense Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggle-checkbox" hidden>
+        <label for="toggle-checkbox" class="toggle-switch">
+            <span class="toggle-icon"></span>
+        </label>
+    </div>
+
+    <div class="card">
+        <h2>Extracted Expense Details</h2>
+        <p><strong>Expense Name:</strong> {{ result.name }}</p>
+        <p><strong>Expense Date:</strong> {{ result.date }}</p>
+        <p><strong>Category:</strong> {{ result.category }}</p>
+        <p><strong>Amount Detected:</strong> {{ result.amount }}</p>
+
+        <h3>Extracted Text (Raw OCR):</h3>
+        <pre>{{ result.text }}</pre>
+
+        <div class="nav-links">
+            <a href="/">← Upload Another Receipt</a> |
+            <a href="/expenses">📂 View All Expenses</a>
+        </div>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('toggle-checkbox');
+        const body = document.body;
+
+        checkbox.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        window.onload = () => {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                document.getElementById('toggle-checkbox').checked = true;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Expense Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Toggle Switch -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggle-checkbox" hidden>
+        <label for="toggle-checkbox" class="toggle-switch">
+            <span class="toggle-icon"></span>
+        </label>
+    </div>
+    
+    <div class="hero">
+        <!--logout button -->
+        <div style="text-align: right; margin: 10px;">
+           <a href="{{ url_for('logout') }}" class="back">🚪 Logout</a>
+        </div>
+
+        <h1>📷 OCR Expense Tracker</h1>
+        <p>Snap. Upload. Track your spending in seconds.</p>
+    </div>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="expense_name">Expense Name:</label>
+        <input type="text" name="expense_name" id="expense_name" required>
+
+        <label for="expense_date">Expense Date:</label>
+        <input type="date" name="expense_date" id="expense_date" required>
+        <label for="category">Select Category:</label>
+        <select name="category" id="category" required>
+            <option value="">-- Choose a category --</option>
+            <option value="Groceries">🛒 Groceries</option>
+            <option value="Travel">🚌 Travel</option>
+            <option value="Food">🍕 Food</option>
+            <option value="Bills">📄 Bills</option>
+            <option value="Shopping">🛍️ Shopping</option>
+            <option value="Other">📝 Other</option>
+        </select>
+
+        <!-- Add category dropdown here -->
+
+        <label for="receipt">Select Receipt Image:</label>
+        <input type="file" name="receipt" id="receipt" accept="image/*" required>
+
+        <input type="submit" value="Extract Expense">
+   </form>
+
+
+   <div style="margin-top: 20px; text-align: center;">
+        <a href="/expenses" class="back">🔍 View All Expenses</a> |
+        <a href="/dashboard" class="back">📊 View Dashboard</a> |
+        <a href="/download_csv" class="back">⬇️ Download CSV</a>
+   </div>
+
+
+    <script>
+        const checkbox = document.getElementById('toggle-checkbox');
+        const body = document.body;
+
+        checkbox.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        window.onload = () => {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                document.getElementById('toggle-checkbox').checked = true;
+            }
+        };
+    </script>
+</body>
+</html>

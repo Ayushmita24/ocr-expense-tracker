@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Features | OCR Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #d4fc79, #96e6a1);
+      color: #333;
+    }
+
+    .features-container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .features-container h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      color: #2c3e50;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    .feature-card p {
+      font-size: 0.95em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'navbar.html' %}
+
+  <div class="features-container">
+    <h1>Our Key Features</h1>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <h3>OCR Receipt Upload</h3>
+        <p>Scan and upload receipts instantly. Our OCR engine reads expense data automatically.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Category Breakdown</h3>
+        <p>Track where your money goes – groceries, bills, travel, and more.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Visual Analytics</h3>
+        <p>Interactive charts and graphs show your monthly and category-wise spending.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Edit & Delete Expenses</h3>
+        <p>Manage your records easily by editing or removing incorrect entries.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Dark/Light Mode</h3>
+        <p>Switch themes for a comfortable viewing experience anytime.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Mobile Responsive</h3>
+        <p>Track and view your expenses on the go with a fully responsive UI.</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

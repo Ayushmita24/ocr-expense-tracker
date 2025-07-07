@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | OCR Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .form-box form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-box input,
+    .form-box button {
+      width: 80%;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="{{ url_for('static', filename='ocr_expense_tracker.png') }}" alt="Logo" class="logo">
+    <h2>Welcome Back</h2>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+      <p class="success">{{ success }}</p>
+    {% endif %}
+    {% if register_error %}
+      <p class="error">{{ register_error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('login') }}" id="auth-form">
+  <!-- This hidden field tells Flask which form was submitted -->
+  <input type="hidden" name="action" value="login" id="form-action">
+
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+  <div class="options">
+    <label><input type="checkbox"> Remember me</label>
+    <a href="#">Forgot Password?</a>
+  </div>
+
+  <button type="submit">Sign In</button>
+</form>
+
+<div class="register-link">
+  Don’t have an account? <a href="#" onclick="switchToRegister()">Register</a>
+</div>
+
+<script>
+function switchToRegister() {
+  const form = document.getElementById('auth-form');
+  form.innerHTML = `
+    <input type="hidden" name="action" value="register" id="form-action">
+
+    <label for="reg_username">Username</label>
+    <input type="text" id="reg_username" name="reg_username" placeholder="Choose a username" required>
+
+    <label for="reg_password">Password</label>
+    <input type="password" id="reg_password" name="reg_password" placeholder="Create a password" required>
+
+    <button type="submit">Register</button>
+  `;
+  document.querySelector('.register-link').innerHTML = `Already have an account? <a href="/login">Login</a>`;
+  document.querySelector('h2').textContent = "Create Account";
+}
+</script>
+
+</body>
+</html>

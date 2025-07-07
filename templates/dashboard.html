@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="toggle-checkbox" onchange="toggleTheme()">
+        <label for="toggle-checkbox" class="toggle-switch"></label>
+    </div>
+
+    <div class="hero">
+        <h1>📊 Expense Dashboard</h1>
+        <p>Visual insights into your spending</p>
+    </div>
+
+    <div class="card">
+        <h2>Monthly Spending</h2>
+        <canvas id="monthlyChart" height="100"></canvas>
+
+        <h2 style="margin-top: 40px;">Category Breakdown</h2>
+        <canvas id="categoryChart" height="100"></canvas>
+
+        <h2 style="margin-top: 40px;">Top 5 Expenses</h2>
+        <ul>
+            {% for name, amount in top_expenses %}
+                <li><strong>{{ name }}</strong> - ₹{{ "{:,.2f}".format(amount) }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/" class="back">🏠 Back to Home</a>
+    </div>
+
+    <script>
+        const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+        const monthlyChart = new Chart(monthlyCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ monthly_labels|tojson }},
+                datasets: [{
+                    label: 'Amount Spent (₹)',
+                    data: {{ monthly_values|tojson }},
+                    backgroundColor: '#6C63FF'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        const categoryChart = new Chart(categoryCtx, {
+            type: 'pie',
+            data: {
+                labels: {{ category_labels|tojson }},
+                datasets: [{
+                    label: 'Category',
+                    data: {{ category_values|tojson }},
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56', '#6C63FF', '#4BC0C0', '#9966FF'
+                    ]
+                }]
+            }
+        });
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

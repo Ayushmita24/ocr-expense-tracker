@@ -1,0 +1,632 @@
+
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Light theme variables */
+:root {
+    --bg-color: #f9f9f9;
+    --text-color: #222;
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+    --primary-color: #6C63FF;
+    --link-color: #6C63FF;
+    --input-bg: #fff;
+}
+
+/* Dark theme overrides */
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #eee;
+    --card-bg: #2a2a2a;
+    --border-color: #444;
+    --link-color: #a5b4fc;
+    --input-bg: #333;
+}
+
+/* Animated Backgrounds */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    padding: 1rem;
+    max-width: 600px;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+/*  Light Theme Background Animation */
+body:not(.dark-mode) {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #5ba476, #8fd3f4, #ffecd2);
+    background-size: 600% 600%;
+    animation: rainbowBG 30s ease infinite;
+}
+
+/*  Soft & Gentle Dark Theme Background */
+body.dark-mode {
+    background: linear-gradient(135deg, #2e2a3f, #3b3a5a, #4a4a6a, #35354a, #2c2b40);
+    background-size: 500% 500%;
+    animation: darkBG 30s ease infinite;
+}
+
+
+
+
+h1, h2, h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.4); /* Light glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+label {
+    display: block;
+    margin: 15px auto 5px;
+    font-weight: 600;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+    width: 94%;
+    max-width: 500px;
+    display: block;
+    margin: 5px auto;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    align-items: center;
+}
+
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #35308a;
+    transform: scale(1.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+th {
+    background-color: #ebebeb;
+}
+
+body.dark-mode th {
+    background-color: #333;
+}
+
+pre {
+    white-space: pre-wrap;
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+a.back, .nav-links a {
+    color: var(--link-color);
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.card {
+    max-width: 700px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.3); /* Transparent glass look */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+@media screen and (max-width: 768px) {
+    form, .card, table {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    input[type="submit"] {
+        width: 100%;
+    }
+}
+
+/* Fix calendar icon in dark mode */
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* Fix file button in dark */
+body.dark-mode input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/*  Theme Toggle Button Styling */
+.theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 999;
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    width: 50px;
+    height: 26px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.toggle-switch::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    left: 2px;
+    top: 1px;
+    transition: transform 0.3s ease;
+}
+
+#toggle-checkbox:checked + .toggle-switch::before {
+    transform: translateX(24px);
+}
+
+.toggle-icon {
+    position: absolute;
+    right: 6px;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+body.dark-mode .toggle-icon::before {
+    content: "☀️";
+    position: absolute;
+    left: 6px;
+}
+
+/*  Animation Keyframes */
+@keyframes rainbowBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes darkBG {
+    0% { background-position: 0% 100%; }
+    50% { background-position: 100% 0%; }
+    100% { background-position: 0% 100%; }
+}
+
+body.dark-mode form,
+body.dark-mode .card {
+    background-color: rgba(30, 30, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* darker glass for dark theme */
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="date"],
+body.dark-mode input[type="file"] {
+    background-color: rgba(30, 30, 30, 0.4);
+    color: #eee;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Select Dropdown */
+select {
+    width: 94%;                    /* Match input width */
+    max-width: 500px;
+    display: block;
+    margin: 5px auto;              /* Same vertical margin as inputs */
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+
+/* Dark mode */
+body.dark-mode select {
+    background-color: rgba(30, 30, 30, 0.4);
+    color: #eee;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+}
+
+a.back {
+  color: var(--link-color);
+  display: inline-block;
+  margin: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+a.back:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+
+.logout-btn {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: auto;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* Login & Register Shared Container */
+.login-register-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+/* Container holding both forms side-by-side */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-register-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Each box styling */
+.box {
+    width: 300px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+}
+
+/* Form input fields */
+.box input[type="text"],
+.box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+.box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.box button:hover {
+    background-color: #0056b3;
+}
+
+/* Messages */
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+.success {
+    color: green;
+    font-size: 0.9em;
+}
+
+/*  Responsive layout: stack boxes on small screens */
+@media (max-width: 768px) {
+    .login-register-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box {
+        width: 90%;
+    }
+}
+
+/*for login and register page
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}*/
+
+form label {
+  align-self: flex-start;
+  margin-left: 10%;
+  color: #fff9f9; /* black text */
+  font-weight: bold;
+  align-items: center;
+}
+
+form input[type="text"],
+form input[type="password"],
+form button {
+  width: 80%;
+  margin: 0.5rem auto;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffffff; /* white background */
+  color: #000; /* black text */
+  font-size: 1rem;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0.5rem auto;
+  color: #000; /* black text */
+}
+
+.options a {
+  color: #5a00a3; /* or any shade you prefer */
+}
+
+button[type="submit"] {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem;
+  width: 80%;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  width: 64px;         /* Adjust size as needed */
+  height: 64px;
+  border-radius: 50%;  /* Makes it circular */
+  object-fit: cover;   /* Ensures the image fits well inside the circle */
+  margin-bottom: 5px; /* Optional spacing */
+  border: 2px solid #228B22;
+}
+/* ------------------------------
+   Final Vertical Form Styling Fix
+   ------------------------------ */
+
+form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+form label {
+    align-self: flex-start;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-left: 0;
+}
+
+/* Apply to all form fields */
+form input[type="text"],
+form input[type="password"],
+form input[type="date"],
+form input[type="file"],
+form select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect */
+form input:focus,
+form select:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.15);
+}
+
+/* Responsive spacing for mobile */
+@media screen and (max-width: 600px) {
+    form {
+        padding: 1.5rem;
+    }
+}
+/* ✅ Sexy, Compact Form Box */
+/* 💎 Final Clean & Sexy Form */
+form {
+  max-width: 420px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 1.8rem;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+form label {
+  align-self: flex-start;
+  margin: 0 0 4px 2px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="date"],
+form input[type="file"],
+form select {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: var(--input-bg);
+  color: var(--text-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+form input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+form input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
